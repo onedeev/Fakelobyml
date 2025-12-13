@@ -24,10 +24,8 @@ h2 {
   margin-bottom: 15px;
 }
 
-/* INPUT */
-input[type="file"],
-input[type="text"],
-button {
+/* FORM */
+input, button {
   width: 100%;
   padding: 10px;
   background: #111827;
@@ -49,9 +47,10 @@ button {
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
   overflow: hidden;
+  display: none; /* 🔥 DISIMPAN DULU */
 }
 
 /* AVATAR */
@@ -105,10 +104,97 @@ button {
   pointer-events: none;
 }
 
+/* FOOTER */
 .note {
   text-align: center;
   font-size: 12px;
-  opacity: 0.6;
+  opacity: .6;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <h2>ML Lobby Generator</h2>
+
+  <!-- FORM -->
+  <input type="file" accept="image/*" id="upload">
+  <input type="text" id="usernameInput" placeholder="Masukkan username">
+  <button id="generateBtn">Generate</button>
+
+  <!-- PREVIEW (HIDDEN AWALNYA) -->
+  <div class="preview" id="preview">
+
+    <div class="avatar-wrapper">
+      <img id="avatarPhoto">
+      <img src="avatar-frame.png" class="avatar-frame">
+    </div>
+
+    <div class="username" id="usernameText"></div>
+
+    <img src="lobby.png" id="lobby">
+  </div>
+
+  <div class="note">Fan-made / Parody only</div>
+</div>
+
+<script>
+const upload = document.getElementById("upload");
+const usernameInput = document.getElementById("usernameInput");
+const generateBtn = document.getElementById("generateBtn");
+
+const preview = document.getElementById("preview");
+const avatarPhoto = document.getElementById("avatarPhoto");
+const usernameText = document.getElementById("usernameText");
+
+let croppedImage = null;
+
+/* LOAD FOTO */
+upload.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = () => img.src = reader.result;
+
+  img.onload = () => {
+    const size = Math.min(img.width, img.height);
+    const x = (img.width - size) / 2;
+    const y = (img.height - size) / 2;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+
+    canvas.getContext("2d")
+      .drawImage(img, x, y, size, size, 0, 0, size, size);
+
+    croppedImage = canvas.toDataURL("image/png");
+  };
+
+  reader.readAsDataURL(file);
+});
+
+/* GENERATE */
+generateBtn.addEventListener("click", () => {
+  if (!croppedImage) {
+    alert("Upload foto dulu!");
+    return;
+  }
+
+  avatarPhoto.src = croppedImage;
+  usernameText.textContent = usernameInput.value || "";
+
+  preview.style.display = "block"; // 🔥 BARU MUNCUL
+});
+</script>
+
+</body>
+</html>  opacity: 0.6;
   margin-top: 10px;
 }
 </style>
