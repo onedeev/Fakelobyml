@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>ML Lobby Generator</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 20px;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.wrapper {
+  position: relative;
+  width: 360px;
+  margin: auto;
+}
+
+/* FOTO USER */
+#userPhoto {
+  width: 100%;
+  display: block;
+}
+
+/* LOBBY OVERLAY */
+#lobby {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* FORM */
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background: gold;
+  border: none;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h3>Upload Foto</h3>
+<input type="file" accept="image/*" id="upload">
+
+<div class="wrapper">
+  <!-- FOTO USER -->
+  <img id="userPhoto">
+
+  <!-- LOBBY DI ATAS FOTO -->
+  <img src="lobby.png" id="lobby">
+</div>
+
+<script>
+const upload = document.getElementById("upload");
+const userPhoto = document.getElementById("userPhoto");
+
+upload.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    userPhoto.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+
+</body>
+</html>
