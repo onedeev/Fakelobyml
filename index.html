@@ -14,30 +14,37 @@ body {
   color: white;
 }
 
-/* APP WRAPPER */
 .app {
   max-width: 380px;
   margin: auto;
 }
 
-/* TITLE */
 h2 {
   text-align: center;
   margin-bottom: 15px;
 }
 
 /* INPUT */
-input[type="file"] {
+input[type="file"],
+input[type="text"],
+button {
   width: 100%;
   padding: 10px;
   background: #111827;
   color: white;
   border: 1px solid #1f2933;
   border-radius: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-/* PREVIEW AREA */
+button {
+  background: gold;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* PREVIEW */
 .preview {
   position: relative;
   width: 100%;
@@ -47,41 +54,49 @@ input[type="file"] {
   overflow: hidden;
 }
 
-/* ===================== */
-/* AVATAR WRAPPER */
-/* ===================== */
+/* AVATAR */
 .avatar-wrapper {
   position: absolute;
-  top: 120px;              /* POSISI AVATAR */
+  top: 120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;            /* UKURAN AVATAR */
+  width: 100px;
   height: 100px;
 }
 
-/* FOTO USER */
 #avatarPhoto {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 70%;              /* 🔥 FOTO DIPERKECIL */
+  width: 70%;
   height: 70%;
   transform: translate(-50%, -50%);
   object-fit: cover;
   border-radius: 12px;
 }
 
-/* FRAME / BOLDER */
 .avatar-frame {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
 }
 
-/* LOBBY OVERLAY */
+/* USERNAME */
+.username {
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,.8);
+  white-space: nowrap;
+}
+
+/* LOBBY */
 #lobby {
   position: absolute;
   inset: 0;
@@ -90,7 +105,6 @@ input[type="file"] {
   pointer-events: none;
 }
 
-/* FOOTER */
 .note {
   text-align: center;
   font-size: 12px;
@@ -106,9 +120,77 @@ input[type="file"] {
   <h2>ML Lobby Generator</h2>
 
   <input type="file" accept="image/*" id="upload">
+  <input type="text" id="usernameInput" placeholder="Masukkan username">
+  <button id="generateBtn">Generate</button>
 
   <div class="preview">
 
+    <!-- AVATAR -->
+    <div class="avatar-wrapper">
+      <img id="avatarPhoto">
+      <img src="avatar-frame.png" class="avatar-frame">
+    </div>
+
+    <!-- USERNAME -->
+    <div class="username" id="usernameText"></div>
+
+    <!-- LOBBY -->
+    <img src="lobby.png" id="lobby">
+
+  </div>
+
+  <div class="note">Fan-made / Parody only</div>
+</div>
+
+<script>
+const upload = document.getElementById("upload");
+const avatarPhoto = document.getElementById("avatarPhoto");
+const usernameInput = document.getElementById("usernameInput");
+const usernameText = document.getElementById("usernameText");
+const generateBtn = document.getElementById("generateBtn");
+
+let croppedImage = null;
+
+/* LOAD FOTO */
+upload.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = () => img.src = reader.result;
+
+  img.onload = () => {
+    const size = Math.min(img.width, img.height);
+    const x = (img.width - size) / 2;
+    const y = (img.height - size) / 2;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, x, y, size, size, 0, 0, size, size);
+
+    croppedImage = canvas.toDataURL("image/png");
+  };
+
+  reader.readAsDataURL(file);
+});
+
+/* GENERATE */
+generateBtn.addEventListener("click", () => {
+  if (croppedImage) {
+    avatarPhoto.src = croppedImage;
+  }
+
+  usernameText.textContent = usernameInput.value || "";
+});
+</script>
+
+</body>
+</html>
     <!-- AVATAR -->
     <div class="avatar-wrapper">
       <img id="avatarPhoto">
