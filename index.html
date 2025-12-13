@@ -190,6 +190,87 @@ generateBtn.addEventListener("click", () => {
 </script>
 
 </body>
+</html>  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <h2>ML Lobby Generator</h2>
+
+  <input type="file" accept="image/*" id="upload">
+  <input type="text" id="usernameInput" placeholder="Masukkan username">
+  <button id="generateBtn">Generate</button>
+
+  <div class="preview">
+
+    <!-- AVATAR -->
+    <div class="avatar-wrapper">
+      <img id="avatarPhoto">
+      <img src="avatar-frame.png" class="avatar-frame">
+    </div>
+
+    <!-- USERNAME -->
+    <div class="username" id="usernameText"></div>
+
+    <!-- LOBBY -->
+    <img src="lobby.png" id="lobby">
+
+  </div>
+
+  <div class="note">Fan-made / Parody only</div>
+</div>
+
+<script>
+const upload = document.getElementById("upload");
+const avatarPhoto = document.getElementById("avatarPhoto");
+const usernameInput = document.getElementById("usernameInput");
+const usernameText = document.getElementById("usernameText");
+const generateBtn = document.getElementById("generateBtn");
+
+let croppedImage = null;
+
+/* LOAD FOTO */
+upload.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = () => img.src = reader.result;
+
+  img.onload = () => {
+    const size = Math.min(img.width, img.height);
+    const x = (img.width - size) / 2;
+    const y = (img.height - size) / 2;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, x, y, size, size, 0, 0, size, size);
+
+    croppedImage = canvas.toDataURL("image/png");
+  };
+
+  reader.readAsDataURL(file);
+});
+
+/* GENERATE */
+generateBtn.addEventListener("click", () => {
+  if (croppedImage) {
+    avatarPhoto.src = croppedImage;
+  }
+
+  usernameText.textContent = usernameInput.value || "";
+});
+</script>
+
+</body>
 </html>
     <!-- AVATAR -->
     <div class="avatar-wrapper">
