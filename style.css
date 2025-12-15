@@ -1,0 +1,193 @@
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#020617;
+  font-family:system-ui,Arial;
+  color:white;
+}
+.app{
+  width:100%;
+  min-height:100vh;
+  padding:16px;
+}
+
+/* HEADER PANEL */
+.header-panel{
+  padding:16px;
+  border-radius:22px;
+  margin-bottom:18px;
+  background:
+    linear-gradient(#020617,#020617) padding-box,
+    linear-gradient(135deg,#7c3aed,#ff2d2d) border-box;
+  border:1.5px solid transparent;
+}
+
+/* TOP BRAND */
+.top-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.logo-wrap{
+  width:100px;
+  height:100px;
+  position:relative;
+}
+.logo{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid #7c3aed;
+}
+.logo video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* MENU */
+.menu-trigger{
+  position:absolute;
+  left:50%;
+  top:100%;
+  transform:translateX(-50%);
+  margin-top:6px;
+  width:38px;
+  height:26px;
+  background:#020617;
+  border:1.5px solid #ff2d2d;
+  border-radius:6px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  padding:4px 6px;
+  cursor:pointer;
+}
+.menu-trigger span{
+  height:2px;
+  background:#ff2d2d;
+}
+
+/* VIDEO BOX */
+.video-box{
+  flex:1;
+  height:100px;
+  border-radius:30px;
+  overflow:hidden;
+  position:relative;
+  border:5px solid #1f2937;
+}
+.video-box video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* CLOCK */
+.clock{
+  position:absolute;
+  left:12px;
+  bottom:10px;
+  font-family:'Digital-7 Mono';
+  font-size:14px;
+  color:#ff2d2d;
+}
+
+/* DIVIDER */
+.divider{
+  height:3px;
+  margin:8px 0;
+  background:linear-gradient(90deg,transparent,#1f2937,transparent);
+}
+
+/* TITLE */
+.title{
+  margin-left:120px;
+}
+.title h2{margin:0;font-size:18px}
+.title p{font-size:11px;opacity:.7}
+
+/* GENERATOR */
+.generator-box{
+  border-radius:20px;
+  padding:14px;
+  background:
+    linear-gradient(#020617,#020617) padding-box,
+    linear-gradient(135deg,#7c3aed,#ff2d2d) border-box;
+  border:1.5px solid transparent;
+}
+.generator-header{
+  text-align:center;
+  font-size:12px;
+  letter-spacing:2px;
+  color:#a78bfa;
+  margin-bottom:12px;
+}
+.card{background:#020617;padding:14px;border-radius:16px}
+
+/* INPUT */
+input,button{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  margin-bottom:12px;
+  border:none;
+}
+input{
+  background:#020617;
+  border:1.5px solid transparent;
+  background-image:
+    linear-gradient(#020617,#020617),
+    linear-gradient(135deg,#7c3aed,#ff2d2d);
+  background-clip:padding-box,border-box;
+  color:white;
+}
+button{
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  color:white;
+  font-weight:700;
+}
+
+/* RESULT */
+.result-box{
+  max-width:360px;
+  margin:14px auto 0;
+  aspect-ratio:9/16;
+  border-radius:18px;
+  border:1px solid #1f2937;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.preview{display:none;width:100%;height:100%;position:relative}
+
+/* POPUP */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.popup-overlay.active{display:flex}
+.popup-box{
+  background:#020617;
+  padding:16px;
+  border-radius:16px;
+  width:280px;
+  text-align:center;
+}
+.popup-btn{
+  display:block;
+  padding:8px;
+  margin-bottom:6px;
+  border-radius:8px;
+  color:white;
+  text-decoration:none;
+}
+.telegram{background:#229ED9}
+.tiktok{background:#000}
+.whatsapp{background:#25D366}

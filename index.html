@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Lobby Generator</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header-panel">
+    <div class="top-brand">
+
+      <div class="logo-wrap">
+        <div class="logo">
+          <video autoplay muted loop playsinline>
+            <source src="https://i.imgur.com/JDcU2C4.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="menu-trigger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="video-box">
+        <video autoplay muted loop playsinline>
+          <source src="https://i.imgur.com/PdFPqTd.mp4" type="video/mp4">
+        </video>
+        <div class="clock" id="clock">00:00:00</div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="title">
+      <h2>ML Lobby Generator</h2>
+      <p>Fan-made / Parody</p>
+    </div>
+
+    <div class="divider"></div>
+  </div>
+
+  <!-- GENERATOR -->
+  <div class="generator-box">
+    <div class="generator-header">GENERATOR PANEL</div>
+
+    <div class="card">
+      <div class="field">
+        <label>Upload Avatar</label>
+        <input type="file" id="upload" accept="image/*">
+      </div>
+
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="usernameInput" maxlength="8" placeholder="Max 8 karakter">
+      </div>
+
+      <button id="generateBtn">Generate</button>
+
+      <!-- RESULT -->
+      <div class="result-box" id="resultBox">
+        <span id="placeholder">Hasil akan muncul di sini</span>
+
+        <div class="preview" id="preview">
+          <div class="avatar-wrapper">
+            <img id="avatarPhoto">
+            <img src="https://i.imgur.com/FRAME_URL.png" class="avatar-frame">
+          </div>
+          <div class="username" id="usernameText"></div>
+          <img id="lobby" src="https://i.imgur.com/pulwpaY.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <h3 class="popup-title">INFORMASI !!</h3>
+
+      <p class="popup-warning">
+        Website ini GRATIS 100% dan DILARANG DIJUAL BELIKAN.
+        Hanya untuk hiburan.
+      </p>
+
+      <p class="popup-subtitle">IKUTI AKUN SOSMED KAMI</p>
+
+      <a href="#" class="popup-btn telegram">Telegram</a>
+      <a href="#" class="popup-btn tiktok">TikTok</a>
+      <a href="#" class="popup-btn whatsapp">WhatsApp</a>
+
+      <div class="note">© Onedev</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- JS -->
+<script src="script.js"></script>
+</body>
+</html>
